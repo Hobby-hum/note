@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="counter"></div>
+    <button onclick="stop()">停止</button> -->
+    <script>
+        // 秒表计时器
+        // const el = document.getElementById('counter');
+        // let intervalId, seconds;
+        // function counter() {
+        //     intervalId = setInterval(() => {
+        //         --seconds;
+        //         el.innerText = seconds;
+        //         if(seconds == 0) {
+        //             clearInterval(intervalId);
+        //         }
+        //     }, 1000);
+        // }
+    
+        // function stop() {
+        //     clearInterval(intervalId);
+        // }
+        // seconds = 60;
+        // counter();
+
+        // 设置内存存储日期
+        class Storage {
+            get(key) {
+                const wrapValue = localStorage.getItem(key);
+                if(wrapValue === null) {
+                    return undefined
+                }
+                const {value, expires} = JSON.parse(wrapValue);
+                if((expires !== null && Date.now() < expires) || expires === null) {
+                    if(!expires && Date.now() < expires) {
+                        return value;
+                    }
+                    localStorage.removeItem(key);
+                    return undefined;
+                }
+            }
+            set(key, value, period) {
+                const wrapValue = { value };
+                if(period) {
+                    wrapValue.expires = Date.now() + period;
+                }
+                localStorage.setItem(key, JSON.stringify(wrapValue));
+            }
+
+           
+        }
+
+        const newStorage = new Storage;
+        console.log(newStorage, 'new');
+        newStorage.set('name', 'shixinyue', 10000);
+        // console.log(newStorage.get('name'));
+
+    </script>
+</body>
+
+</html>
