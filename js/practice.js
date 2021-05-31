@@ -47,3 +47,52 @@ const user = { name: "Lydia", age: 21 }
 
 console.log(getList(list))
 console.log(getUser(user))
+
+function nums(a, b) {
+    if
+    (a > b)
+    console.log('a is bigger')
+    else 
+    console.log('b is bigger')
+    return 
+    a + b
+  }
+  
+  console.log(nums(4, 2))
+  console.log(nums(1, 2))
+  // 'a is bigger' undefined 'b' is bigger undefined  --> return 不能换行，不然return undefined
+
+  function givelydiaPizza() {
+     return 'Here is pizza'
+  }
+  const givelydiaChocolate = () => 'Here is chololate... now go hit the gym already';
+  console.log(givelydiaPizza.prototype) // { constructor: ...} 普通函数的prototype是一个原型对象，包含constructor 属性
+  console.log(givelydiaChocolate.prototype) // undefined 箭头函数没有this，没有prototype不能被new字符实例化
+
+//   const numList = [1,2,3].push(4);
+//   console.log(numList.push(5)) // error 因为numList的结果是4，[].push() --> 返回的是数组长度
+
+// 手写一个数组去重方法
+const obj = {}
+const arr = ['lydia', 'pink', 'pink', 'ok', 'name'];
+for(let i =0, len = arr.length; i<len; i++) {
+    const item = arr[i];
+    if(obj[item] !== undefined) {
+        arr.splice(i,1);
+        i--; // 解决删除元素后，数组塌陷问题
+        continue;
+    }
+    obj[item] = item;
+}
+// console.log(arr, 'arr');
+
+//不改变原数组的情况下重新，补充新的元素
+
+const insert = (arr, index, newItem) => {
+    return [
+        ...arr.slice(0,index), //先取出要补充元素的前面元素
+        newItem, // 新补充的元素
+        ...arr.slice(index)
+    ]
+}
+console.log(insert(['w', 'i', 'l', 'l'], 1 , 'o'));
